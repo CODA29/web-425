@@ -1,1 +1,159 @@
-/* You can add global styles to this file, and also import other style files */
+/*Import Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; }
+
+:root {
+  --bg: #0b0f14;
+  --surface: #121a24;
+  --text: #e7eef7;
+  --text-dim: #b5c2d6;
+  --radius: 16px;
+  --shadow: 0 10px 25px rgba(0,0,0,.35);
+  --maxw: 1100px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  font-family: 'Cinzel', serif;
+}
+p, li {
+  font-family: 'Merriweather', serif;
+  color: var(--text-dim);
+}
+
+.container {
+  width: min(100%, var(--maxw));
+  margin-inline: auto;
+  padding: 0 1rem;
+}
+
+.site-header {
+  backdrop-filter: saturate(120%) blur(8px);
+  background: rgba(18,26,36,.9);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .85rem 0;
+}
+.logo { display: flex; align-items: center; gap: .6rem; }
+.logo-mark { font-size: 1.4rem; }
+.logo-text {
+  font-weight: 800;
+  color: #90ee90;
+}
+.logo-link{
+  text-decoration: none;
+}
+
+.header-nav ul,
+.footer-nav ul {
+  display: flex;
+  gap: .75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+nav a {
+  padding: .5rem .75rem;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 8px;
+}
+nav a:hover {
+  background: rgb(178, 208, 178);
+  color: rgb(0, 0, 0);
+
+}
+
+.site-main { padding: 2rem 0 3rem; }
+
+.hero {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* Hero image styles */
+.hero-image {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.4);
+}
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  color: #fff;
+}
+.hero p {
+  max-width: 60ch;
+  margin: .75rem auto 1.25rem;
+}
+
+.call-to-action {
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  border-radius: 12px;
+  padding: .6rem 1rem;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.btn-primary {
+  background: #90ee90;
+  color: #001018;
+  font-weight: 800;
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.24);
+  color: var(--text);
+}
+.btn:hover { filter: brightness(.8); }
+
+.site-footer {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 1rem 0 2rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.footer-nav{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.copyright {
+  font-size: .9rem;
+  color: var(--text-dim);
+  margin-top: 5rem;
+}
