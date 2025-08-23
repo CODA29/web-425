@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   template: `
     <section class="landing-hero">
       <div class="hero-content">
@@ -16,8 +17,8 @@ import { Component } from '@angular/core';
           designed to bring your imagination to life.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#">Start Building</a>
-          <a class="btn btn-ghost" href="#">Explore Characters</a>
+          <a class="btn btn-primary" routerLink="/create-character">Start Building</a>
+          <a class="btn btn-ghost" routerLink="/character-faction">Explore Characters</a>
         </div>
       </div>
       <div class="hero-image">
@@ -72,10 +73,10 @@ import { Component } from '@angular/core';
         The RPG Character Builder is more than a tool—it’s a gateway to endless
         storytelling. Whether you are a veteran dungeon master or someone brand new to
         role-playing games, this application provides a space where your imagination takes
-        the lead. Step inside, create your heroes, and embark on adventures that will live
+        the lead. Step inside, create your guild, and embark on adventures that will live
         in your memory and your campaigns for years to come.
       </p>
-      <a class="btn btn-primary" href="#">Begin Your Journey</a>
+      <a class="btn btn-primary" routerLink="/create-guild">Create Your Guild</a>
     </section>
   `,
   styles: [`

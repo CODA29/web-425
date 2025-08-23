@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   template: `
     <header class="site-header">
       <div class="container header-inner">
@@ -17,11 +17,12 @@ import { RouterOutlet } from '@angular/router';
 
         <nav class="header-nav" aria-label="Primary">
           <ul>
-            <li><a href="#" aria-current="page">Dashboard</a></li>
-            <li><a href="#">Characters</a></li>
-            <li><a href="#">Create</a></li>
-            <li><a href="#">Inventory</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/players">Players</a></li>
+            <li><a routerLink="/create-character">Create Character</a></li>
+            <li><a routerLink="/create-guild">Create Guild</a></li>
+            <li><a routerLink="/character-faction">Character Faction</a></li>
+            <li><a routerLink="/signin">Sign In</a></li>
           </ul>
         </nav>
       </div>
@@ -41,8 +42,8 @@ import { RouterOutlet } from '@angular/router';
             tavern.
           </p>
           <div class="call-to-action">
-            <a class="btn btn-primary" href="#">New Character</a>
-            <a class="btn btn-ghost" href="#">Browse Builds</a>
+            <a class="btn btn-primary" routerLink="/create-character">Create Character</a>
+           <!-- <a class="btn btn-ghost" routerLink="/character-faction">Browse Faction</a> -->
           </div>
         </section>
 
@@ -56,11 +57,12 @@ import { RouterOutlet } from '@angular/router';
       <div class="container footer-inner">
         <nav class="footer-nav" aria-label="Footer">
           <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Characters</a></li>
-            <li><a href="#">Create</a></li>
-            <li><a href="#">Inventory</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/players">Players</a></li>
+            <li><a routerLink="/create-character">Create Character</a></li>
+            <li><a routerLink="/create-guild">Create Guild</a></li>
+            <li><a routerLink="/character-faction">Character Faction</a></li>
+            <li><a routerLink="/signin">Sign In</a></li>
           </ul>
         </nav>
         <p class="copyright">
