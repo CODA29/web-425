@@ -75,7 +75,8 @@ import { Component } from '@angular/core';
       gap: 20px;
     }
     .highlight {
-      text-align: flex: 0 1 calc(33.333% -center; 20px);
+      text-align: center;
+      flex: 0 1 calc(33.333% -center; 20px);
       box-sizing: border-box;
     }
     .highlight img {
