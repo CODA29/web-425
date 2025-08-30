@@ -31,6 +31,6 @@ describe('PlayersComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement; // Get the compiled HTML of the component
     const charactersList = compiled.querySelectorAll('.characters-list');// Get all the menu items
 
-    expect(charactersList.length).toEqual(component.characters.length); // Check if the number of menu items is equal to the number of items in the menu
+    expect(charactersList.length).toEqual(component.characters.length); // Check if the number of character items is equal to the number of items in the characters array
   });
 });

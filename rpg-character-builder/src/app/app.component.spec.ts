@@ -48,7 +48,7 @@ describe('AppComponent (Standalone)', () => {
 
     expect(route).toBeDefined();// Check if the route is defined
     if(route){
-      expect(route.component).toBe(PlayersComponent); // Check if the component is MenuComponent
+      expect(route.component).toBe(PlayersComponent); // Check if the component is PLayerComponent
     }
   });
 
