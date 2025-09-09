@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <div>
-      <h1>Virtual Taco Stand</h1>
       <h2>The Virtual Taco Stand is located in the heart of downtown!</h2>
       <p>
         We specialize in good-ole home cooking. Our menu ranges from Tacos Al

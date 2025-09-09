@@ -27,6 +27,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
           </ul>
         </nav>
         <section class="content">
+          <h1>Hello, {{ title }}</h1>
           <router-outlet />
         </section>
       </main>
