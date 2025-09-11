@@ -62,6 +62,6 @@ describe('AppComponent (Standalone)', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, rpg-character-builder');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Forge Your Legend');
   });
 });
