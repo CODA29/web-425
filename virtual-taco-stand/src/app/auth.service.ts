@@ -16,9 +16,9 @@ export class AuthService {
   private users: User[];
   private authState = new BehaviorSubject(<boolean> false);
 
-  constructor(private cookieService: CookieService, private router: Router) {
+  constructor(private cookieService: CookieService, private router: Router){
     this.users = [
-
+      
       { empId: 1007, email: 'wizardlywand@hogwarts.com', password: 'Alohomora123' },
       { empId: 1008, email: 'quidditchqueen@hogwarts.com', password:'Quaxle22' },
       { empId: 1009, email: 'potionmaster@hogwarts.com', password: 'Polyjuice99'},
