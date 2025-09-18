@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +24,22 @@ import { RouterLink, RouterOutlet } from '@angular/router';
             <li><a routerLink="/create-character">Create Character</a></li>
             <li><a routerLink="/create-guild">Create Guild</a></li>
             <li><a routerLink="/character-faction">Character Faction</a></li>
-            <li><a routerLink="/signin">Sign In</a></li>
+
+            @if(email){
+              <li><a (click)="signout()">Sign Out</a></li>
+            }@else{
+              <li><a routerLink="/signin">Sign In</a></li>
+            }
           </ul>
         </nav>
       </div>
     </header>
+
+    <div class="sign-in-container">
+        @if(email){
+          <p> Welcome, <span> {{ email }} </span> </p>
+        }
+    </div>
 
     <main id="main" class="site-main">
       <div class="container">
@@ -41,10 +54,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
             avid gamer, RPG enthusiast or simply an adventurer, this is your
             tavern.
           </p>
-          <div class="call-to-action">
-            <a class="btn btn-primary" routerLink="/create-character">Create Character</a>
-           <!-- <a class="btn btn-ghost" routerLink="/character-faction">Browse Faction</a> -->
-          </div>
+
+
         </section>
 
         <section class="main-content" aria-label="Application content">
@@ -62,7 +73,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
             <li><a routerLink="/create-character">Create Character</a></li>
             <li><a routerLink="/create-guild">Create Guild</a></li>
             <li><a routerLink="/character-faction">Character Faction</a></li>
-            <li><a routerLink="/signin">Sign In</a></li>
+            @if(email){
+              <li><a (click)="signout()">Sign Out</a></li>
+            }@else{
+              <li><a routerLink="/signin">Sign In</a></li>
+            }
           </ul>
         </nav>
         <p class="copyright">
@@ -71,8 +86,45 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       </div>
     </footer>
   `,
-  styles: [``],
+  styles: [`
+
+    .sign-in-container {
+      text-align: right;
+      padding-right: 3rem;
+      margin-top: 10px;
+    }
+    .sign-in-container span{
+      color: #90ee90;
+    }
+    .sign-in-link {
+      color: #000000;
+      text-decoration: none;
+      font-family: 'Lato', sans-serif;
+    }
+    .sign-in-link:hover {
+      text-decoration: underline;
+    }
+
+  `],
 })
 export class AppComponent {
   title = 'rpg-character-builder';
+  email?: string;
+  constructor(
+    private authService: AuthService,
+    private cookieService: CookieService
+  ){}
+
+  ngOnInit(){
+    this.authService.getAuthState().subscribe((isAuth) => {
+      if(isAuth){
+        this.email = this.cookieService.get('session_user');
+      }
+    });
+  }
+
+  signout(){
+    this.authService.signout();
+    this.email = undefined;
+  }
 }

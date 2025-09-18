@@ -110,12 +110,13 @@ import { CommonModule } from '@angular/common';
       font-weight: bold;
     }
     input, select {
-      padding: .6rem;
+      padding: 1rem;
       border-radius: 8px;
       border: 1px solid #444;
       background: #0e141c;
       color: #e7eef7;
       font-size: .9rem;
+      font-family: 'Merriweather', serif;
     }
     input:focus, select:focus {
       outline: none;

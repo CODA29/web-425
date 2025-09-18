@@ -17,8 +17,7 @@ import { RouterLink } from '@angular/router';
           designed to bring your imagination to life.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" routerLink="/create-character">Start Building</a>
-          <a class="btn btn-ghost" routerLink="/character-faction">Explore Characters</a>
+          <a class="btn btn-primary" routerLink="/create-character">Create Character</a>
         </div>
       </div>
       <div class="hero-image">
@@ -124,9 +123,6 @@ import { RouterLink } from '@angular/router';
     }
     .hero-actions {
       margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
     }
 
     /* Buttons */
