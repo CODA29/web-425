@@ -13,43 +13,47 @@ import { AuthService } from '../auth.service';
     <div class="signin-form-container">
       <form [formGroup]="signinForm" (ngSubmit)="signin()" class="signinform">
         <h1> Sign in to your account </h1>
-        <fieldset>
-          <legend>User Sign In</legend>
-          <label for="email">Email</label>
-          <input formControlName="email" type="email" id="email" name="email" />
-          @if (signinForm.controls['email'].touched &&
-          signinForm.controls['email'].hasError('required')) {
-          <small class="error">Email is required.</small>
-          } @if (signinForm.controls['email'].touched &&
-          signinForm.controls['email'].hasError('email')) {
-          <small class="error">Invalid email address.</small>
-          }
-          <label for="password">Password</label>
-          <input formControlName="password" id="password" type="password" />
-          @if (signinForm.controls['password'].touched &&
-          signinForm.controls['password'].hasError('required')) {
-          <small class="error">Password is required.</small>
-          } @if (signinForm.controls['password'].touched &&
-          signinForm.controls['password'].hasError('pattern')) {
-          <small class="error"
-            >Password must be at least 8 characters long and contain at least
-            one uppercase letter and one number.</small
-          >
-          }
-          <button type="submit" class="formBtn" [disabled]="!signinForm.valid" value="Sign In"> Sign In</button>
-        </fieldset>
+
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" id="email" name="email" />
+        @if (signinForm.controls['email'].touched &&
+        signinForm.controls['email'].hasError('required')) {
+        <small class="error">Email is required.</small>
+        } @if (signinForm.controls['email'].touched &&
+        signinForm.controls['email'].hasError('email')) {
+        <small class="error">Invalid email address.</small>
+        }
+        <label for="password">Password</label>
+        <input formControlName="password" id="password" type="password" />
+        @if (signinForm.controls['password'].touched &&
+        signinForm.controls['password'].hasError('required')) {
+        <small class="error">Password is required.</small>
+        } @if (signinForm.controls['password'].touched &&
+        signinForm.controls['password'].hasError('pattern')) {
+        <small class="error"
+          >Password must be at least 8 characters long and contain at least
+          one uppercase letter and one number.</small
+        >
+        }
+        <button type="submit" class="formBtn" [disabled]="!signinForm.valid" value="Sign In"> Sign In</button>
+
       </form>
     </div>
   `,
   styles: `
     .signin-form-container {
-        display: flex;
-        justify-content: center;
-
-        margin: 5rem auto;
+      display: flex;
+      justify-content: center;
+      margin: 5rem auto;
     }
     .signinform{
       width: 600px;
+      background: #121a24;
+      padding: 3rem;
+      border-radius: 12px;
+    }
+    .signinform h1 {
+      color: #90ee90;
     }
 
     legend, label {
@@ -60,31 +64,38 @@ import { AuthService } from '../auth.service';
     }
     label{
       margin-top: 2rem;
+      margin-bottom: .5rem;
     }
-    input{
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      background: #0e141c;
+      color: #fff;
+      font-family: 'Merriweather', serif;
+      font-size: .9rem;
+      border-radius: 8px;
+      border: 1px solid #444;
       padding: 10px;
-      box-sizing: border-box;
-
-    }
-    input[type="email"], input[type="password"] { width:
-      100%;
+      margin-bottom: .5rem;
     }
     .error {
-      color: #90ee90;
+      color: #ff6666;
+      font-size: 0.9rem;
+      font-family: 'Merriweather', serif;
     }
     .formBtn {
       background-color: #90ee90;
       border: none;
       color: black;
-      font-family: 'Lato', sans-serif;
       font-size: 15px;
       cursor: pointer;
       font-weight: bold;
       padding: .6rem 1rem;
+      border-radius: 8px;
       float: right;
       margin: 2rem 0;
     }
-    .formBtn:hover { filter: brightness(.8);
+    .formBtn:hover {
+      filter: brightness(.8);
     }
   `
 })

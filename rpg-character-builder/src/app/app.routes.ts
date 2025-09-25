@@ -31,7 +31,9 @@ export const routes: Routes = [
   },
   {
     path: 'create-guild',
-    component: CreateGuildComponent
+    component: CreateGuildComponent,
+    canActivate: [authGuard]
+
   },
   {
     path: 'character-faction',

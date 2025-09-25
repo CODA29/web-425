@@ -85,7 +85,6 @@ import { CommonModule } from '@angular/common';
 
 
     .form-section {
-
       max-width: 500px;
       margin: 7rem auto;
       padding: 2rem;
@@ -94,9 +93,11 @@ import { CommonModule } from '@angular/common';
       box-shadow: 0 8px 20px rgba(0,0,0,.35);
       color: #e7eef7;
       font-family: 'Merriweather', serif;
+      padding: 3rem;
     }
-    h2 {
+    .form-section h2 {
       font-family: 'Cinzel', serif;
+      color: #90ee90;
       text-align: center;
       margin-bottom: 1.5rem;
     }
@@ -164,11 +165,11 @@ export class CreateCharacterComponent {
 
   faction: Faction = { characterId: 1, characters: [] };
   name: string = '';
-  gender: string = 'select gender';
-  class: string = 'select class';
+  gender: string = '--select gender--';
+  class: string = '--select class--';
 
-  genders: string[] = ['select gender', 'Male', 'Female', 'Other'];
-  classes: string[] = ['select class', 'Mage', 'Rogue', 'Warrior'];
+  genders: string[] = ['--select gender--', 'Male', 'Female', 'Other'];
+  classes: string[] = ['--select class--', 'Mage', 'Rogue', 'Warrior'];
 
   errorMessage: string = '';
 
@@ -176,7 +177,7 @@ export class CreateCharacterComponent {
 
   createCharacter() {
     // if the default options are still selected, show an error
-    if(this.gender === 'select gender' || this.class === 'select class') {
+    if(this.gender === '--select gender--' || this.class === '--select class--') {
       this.errorMessage = 'Please complete all fields before creating a character.';
       return;
     }

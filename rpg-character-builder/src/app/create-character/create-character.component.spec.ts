@@ -56,8 +56,8 @@ describe('CreateCharacterComponent', () => {
     component.resetForm();
 
     expect(component.name).toBe('');
-    expect(component.gender).toBe('select gender');
-    expect(component.class).toBe('select class');
+    expect(component.gender).toBe('--select gender--');
+    expect(component.class).toBe('--select class--');
 
   })
 });
