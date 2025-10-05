@@ -192,7 +192,6 @@ export class OrderComponent {
       console.error('Taco not found in the list of available tacos.', this.selectedTacoId)
     }
   }
-
   
   resetForm(){
     if(this.tacos.length > 0){
