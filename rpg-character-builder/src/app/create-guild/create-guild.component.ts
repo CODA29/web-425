@@ -5,14 +5,14 @@ export interface Guild {
   notificationPreference: string;
 }
 
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
+import { GuildDisplayComponent } from '../guild-display/guild-display.component';
 @Component({
   selector: 'app-create-guild',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, GuildDisplayComponent],
   template: `
     <div class="guild-form-container">
       <h1>Create a Guild</h1>
@@ -81,21 +81,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
     </div>
 
     <!-- Guilds Display -->
-    @if (guilds.length > 0) {
-      <div class="guild-cards-container">
-        <h2>Created Guilds</h2>
-        <div class="guild-cards">
-          @for (g of guilds; track g.guildName) {
-            <div class="guild-card">
-              <h3>{{ g.guildName }}</h3>
-              <p class="guild-type"><strong>Type: </strong> {{ g.type }}</p>
-              <p class="guild-desc"><strong>Description: </strong> {{ g.description }}</p>
-              <p class="guild-notify"><strong>Notifications: </strong> {{ g.notificationPreference }}</p>
-            </div>
-          }
-        </div>
-      </div>
-    }
+    <app-guild-display [guilds]="guilds"> </app-guild-display>
   `,
   styles: `
     .guild-form-container {
@@ -174,41 +160,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
       filter: brightness(.8);
     }
 
-    .guild-cards-container {
-      margin-top: 40px;
-    }
-
-    .guild-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .guild-card {
-      background: #2a2a3d;
-      background: #121a24;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-
-    .guild-card h3 {
-      color: #90ee90;
-      margin-bottom: 10px;
-      font-family: 'Cinzel', serif;
-    }
-
-    .guild-card p {
-      margin: 1rem 0;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
   `
 })
 export class CreateGuildComponent {
   guildForm: FormGroup;
   guilds: Guild[] = [
-    // Initial guilds for demonstration purposes
+    // Example guild for initial display
     {
       guildName: 'Dragon Slayers',
       description: 'A guild dedicated to hunting dragons and other mythical creatures.',
@@ -221,12 +178,14 @@ export class CreateGuildComponent {
       type: 'Educational',
       notificationPreference: 'In-App'
     },
-    { guildName: 'Shadow Thieves',
+    {
+      guildName: 'Shadow Thieves',
       description: 'A stealthy guild specializing in covert operations and espionage.',
       type: 'Casual',
       notificationPreference: 'SMS'
     },
-    { guildName: 'Warrior\'s Honor',
+    {
+      guildName: 'Warrior\'s Honor',
       description: 'A guild that values strength, bravery, and honor in battle.',
       type: 'Competitive',
       notificationPreference: 'Email'
@@ -237,6 +196,7 @@ export class CreateGuildComponent {
   types = ['Competitive', 'Casual', 'Social', 'Educational'];
   notificationPreference = ['Email', 'SMS', 'In-App'];
 
+  @Output() guildCreated = new EventEmitter<Guild[]>();
 
   constructor(private fb: FormBuilder){
     this.guildForm = this.fb.group({
@@ -245,7 +205,10 @@ export class CreateGuildComponent {
       type: ['', Validators.required],
       notificationPreference: ['', Validators.required],
       acceptTerms: [false, Validators.requiredTrue]
-    })
+    });
+
+    // Emit initial guild list on load
+    this.emitGuilds();
   }
 
   createGuild(){
@@ -253,10 +216,15 @@ export class CreateGuildComponent {
       const newGuild: Guild = this.guildForm.value;
       this.guilds.push(newGuild);
       this.guildForm.reset();
+      this.emitGuilds();
 
 
       console.log('Guild created:', newGuild);
       alert("Guild created successfully!");
     }
+  }
+
+  private emitGuilds(){
+    this.guildCreated.emit(this.guilds);
   }
 }

@@ -9,14 +9,15 @@ export interface Faction{
   characterId: number;
 }
 
-import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CharacterDisplayComponent } from '../character-display/character-display.component';
 
 @Component({
   selector: 'app-create-character',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, CharacterDisplayComponent],
   template: `
     <section class="form-section">
       <h2>Create a new character</h2>
@@ -66,18 +67,13 @@ import { CommonModule } from '@angular/common';
         <button type="submit" class="btn" [disabled]="characterForm.invalid">Create</button>
       </form>
 
+      <app-character-display
+        [characters]="faction.characters">
+      </app-character-display>
 
-      <!-- Show created characters -->
-      <div class="character-list" *ngIf="faction.characters.length > 0">
-        <h3> Characters Created </h3>
-        <ul>
-          <li *ngFor="let c of faction.characters">
-            <strong> {{ c.name }} </strong> ( Id - {{c.id}} | {{ c.gender }}, {{ c.class }})
-          </li>
-        </ul>
-
-        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-      </div>
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
     </section>
   `,
   styles:
@@ -145,19 +141,12 @@ import { CommonModule } from '@angular/common';
     .btn:hover:not(:disabled) {
       filter: brightness(1.05);
     }
-    .character-list {
-      margin-top: 2rem;
+    .error-message {
+      color: #ff7676;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      text-align: center;
     }
-    .character-list h3 {
-      font-family: 'Cinzel', serif;
-      margin-bottom: .5rem;
-    }
-    .character-list li {
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-
-
   `]
   ,
 })
@@ -173,7 +162,7 @@ export class CreateCharacterComponent {
 
   errorMessage: string = '';
 
-
+  @Output() characterCreated = new EventEmitter<Character>(); // Output event emitter
 
   createCharacter() {
     // if the default options are still selected, show an error
@@ -194,6 +183,7 @@ export class CreateCharacterComponent {
     };
 
     this.faction.characters.push(newCharacter);
+    this.characterCreated.emit(newCharacter);
 
     // Reset form
     this.resetForm();
