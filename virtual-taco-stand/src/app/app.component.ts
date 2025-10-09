@@ -38,7 +38,7 @@ import { AuthService } from './auth.service';
           </ul>
         </nav>
         <section class="content">
-          <h1>Hello, {{ title }}</h1>
+          <h1>{{ title }}</h1>
           <router-outlet />
         </section>
       </main>
@@ -76,7 +76,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   email?: string;
-  title = 'virtual-taco-stand';
+  title = 'Virtual-Taco-Stand';
   constructor(private authService: AuthService, private cookieService: CookieService){
 
   }

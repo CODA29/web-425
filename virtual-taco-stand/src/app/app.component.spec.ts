@@ -55,13 +55,13 @@ describe('AppComponent (Standalone)',() => {
   it(`should have the 'virtual-taco-stand' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('virtual-taco-stand');
+    expect(app.title).toEqual('Virtual-Taco-Stand');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, virtual-taco-stand');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Virtual-Taco-Stand');
   });
 });
